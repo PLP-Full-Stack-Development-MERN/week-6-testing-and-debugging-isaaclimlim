@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchBugs, createBug, updateBug, deleteBug } from '../utils/api';
+import { fetchBugs, createBug, updateBug, deleteBug } from '../utils/api.js';
 
 const HomePage = () => {
   const [bugs, setBugs] = useState([]);
@@ -43,9 +43,27 @@ const HomePage = () => {
           <li key={bug._id} className="p-2 border-b flex justify-between items-center">
             {bug.title} - {bug.status}
             <div>
-              <button className="bg-yellow-500 text-white px-2 py-1 rounded mr-2" onClick={() => updateBug(bug._id, 'in-progress')}>In Progress</button>
-              <button className="bg-green-500 text-white px-2 py-1 rounded mr-2" onClick={() => updateBug(bug._id, 'resolved')}>Resolve</button>
-              <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={() => deleteBug(bug._id)}>Delete</button>
+                <button 
+                  className="bg-yellow-500 text-white px-2 py-1 rounded mr-2" 
+                  onClick={() => handleUpdateBug(bug._id, 'in-progress')}
+                >
+                  In Progress
+                </button>
+
+                <button 
+                  className="bg-green-500 text-white px-2 py-1 rounded mr-2" 
+                  onClick={() => handleUpdateBug(bug._id, 'resolved')}
+                >
+                  Resolve
+                </button>
+
+                <button 
+                  className="bg-red-500 text-white px-2 py-1 rounded" 
+                  onClick={() => handleDeleteBug(bug._id)}
+                >
+                  Delete
+                </button>
+
             </div>
           </li>
         ))}
